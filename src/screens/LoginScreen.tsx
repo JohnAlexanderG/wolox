@@ -26,6 +26,8 @@ const ages: Ages[] = require('wolox/assets/ages.json');
 import { logIn, signUp } from '../utils/access';
 
 import Storage from '../utils/AsyncStorage';
+import { colors } from '../themes/colors';
+import { color } from 'react-native-reanimated';
 
 const LoginScreen = ({ navigation }: { navigation: any }) => {
 
@@ -157,7 +159,7 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
                           ...styles.textInput,
                           width: width * 0.8,
                         }}
-                        selectionColor='#1976d2'
+                        selectionColor={colors.secondary}
                         placeholder='firts name'
                         placeholderTextColor='white'
                         value={firstName}
@@ -168,7 +170,7 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
                           ...styles.textInput,
                           width: width * 0.8,
                         }}
-                        selectionColor='#1976d2'
+                        selectionColor={colors.secondary}
                         placeholder='last name'
                         placeholderTextColor='white'
                         value={lastName}
@@ -177,15 +179,12 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
                       <View style={styles.chooseYear}>
                         <Text style={styles.chooseYearTitle}>Choose your year of birth</Text>
                         <Picker
-                          style={{
-                            backgroundColor: 'teal'
-                          }}
                           selectedValue={selectedAge}
                           onValueChange={(itemValue, itemIndex) =>
                             setSelectedAge(itemValue)
                           }>
                           {ages.map((item: any) => {
-                            return <Picker.Item style={{ color: '#1976d2' }} key={`item-${item.value}`} label={item.label} value={item.value} />
+                            return <Picker.Item style={{ color: colors.secondary }} key={`item-${item.value}`} label={item.label} value={item.value} />
                           })}
                         </Picker>
                       </View>
@@ -197,7 +196,7 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
                     ...styles.textInput,
                     width: width * 0.8,
                   }}
-                  selectionColor='#1976d2'
+                  selectionColor={colors.secondary}
                   placeholder='your@email.com'
                   placeholderTextColor='white'
                   value={email}
@@ -209,7 +208,7 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
                     width: width * 0.8,
                   }}
                   secureTextEntry
-                  selectionColor='#1976d2'
+                  selectionColor={colors.secondary}
                   placeholder='password'
                   placeholderTextColor='white'
                   value={password}
@@ -238,7 +237,7 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
             ) : null} */}
                 <View style={styles.termsAndConditions}>
                   <CheckBox
-                    tintColors={{ true: '#1976d2', false: 'rgba(227,242,253, 0.60)' }}
+                    tintColors={{ true: colors.secondary, false: 'rgba(227,242,253, 0.60)' }}
                     disabled={false}
                     value={toggleCheckBox}
                     onValueChange={(newValue) => setToggleCheckBox(newValue)}
@@ -273,17 +272,16 @@ const styles = StyleSheet.create({
     height: 100,
   },
   formLogin: {
-    // backgroundColor: 'crimson',
     flexDirection: 'column',
   },
   formLoginAccessed: {
-    backgroundColor: 'rgba(250,250,250, 0.25)',
+    backgroundColor: colors.white25,
     borderRadius: 20,
     paddingBottom: 20,
     alignItems: 'center',
   },
   formLoginAccessedBtnWrapper: {
-    backgroundColor: '#e3f2fd',
+    backgroundColor: colors.white_secondary,
     height: 50,
     borderRadius: 20,
     marginVertical: 20,
@@ -299,51 +297,51 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   formLoginAccessedBtnActive: {
-    backgroundColor: '#1976d2',
+    backgroundColor: colors.secondary,
     borderRadius: 20,
   },
   formLoginAccessedText: {
     fontSize: 16,
-    color: '#3e3e3e',
+    color: colors.textColorBlack,
   },
   formLoginAccessedTextActive: {
-    color: '#fefefe',
+    color: colors.white,
   },
   textInput: {
-    backgroundColor: 'rgba(227,242,253, 0.25)',
+    backgroundColor: colors.blue25,
     marginBottom: 15,
-    color: '#fefefe',
+    color: colors.white,
     paddingLeft: 16,
   },
   btnSubmit: {
-    backgroundColor: '#4791db',
+    backgroundColor: colors.secondary_disabled,
     height: 60,
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center'
   },
   btnSubmitActived: {
-    backgroundColor: '#1976d2',
+    backgroundColor: colors.secondary,
   },
   btnSubmitText: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'rgba(250,250,250, 0.5)',
+    color: colors.white50,
   },
   btnSubmitTextActived: {
-    color: '#fefefe',
+    color: colors.white,
   },
   chooseYear: {
-    backgroundColor: 'rgba(227,242,253, 0.25)',
+    backgroundColor: colors.blue25,
     marginBottom: 15
   },
   chooseYearTitle: {
-    color: '#fefefe',
+    color: colors.white,
     marginTop: 8,
     paddingLeft: 16
   },
   loginGuest: {
-    backgroundColor: '#1976d2',
+    backgroundColor: colors.secondary,
     height: 60,
     borderRadius: 20,
     justifyContent: 'center',
@@ -352,7 +350,7 @@ const styles = StyleSheet.create({
   loginGuestText: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#fefefe',
+    color: colors.white,
   },
   separator: {
     justifyContent: 'center',

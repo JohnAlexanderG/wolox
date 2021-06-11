@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { StyleSheet, TextInput, useWindowDimensions } from 'react-native';
 import { StateContext } from '../context/StateContext';
 import { Books } from '../interfaces/books';
+import { colors } from '../themes/colors';
 
 const SearchInput = () => {
     
@@ -22,7 +23,7 @@ const SearchInput = () => {
         <TextInput
             style={{ ...styles.textInput, width: width * 0.9 }}
             onChangeText={(text: string) => { onHandleSearchInput(text) }}
-            selectionColor='#1976d2'
+            selectionColor={colors.secondary}
             placeholder='Search'
             placeholderTextColor='white'
         />
@@ -31,10 +32,10 @@ const SearchInput = () => {
 
 const styles = StyleSheet.create({
     textInput: {
-        backgroundColor: 'rgba(227,242,253, 0.25)',
+        backgroundColor: colors.blue25,
         paddingLeft: 16,
         borderRadius: 4,
-        color: '#fefefe'
+        color: colors.white
     },
 });
 

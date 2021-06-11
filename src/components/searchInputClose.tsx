@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { View, Text, Pressable } from 'react-native'
 import { StateContext } from '../context/StateContext'
+import { colors } from '../themes/colors';
 
 const SearchInputClose = () => {
 
@@ -22,7 +23,7 @@ const SearchInputClose = () => {
                 }}
             >
                 <Text style={{
-                    color: '#fefefe',
+                    color: colors.white,
                     fontWeight: 'bold',
                     fontSize: 20,
                     textAlign: 'center',

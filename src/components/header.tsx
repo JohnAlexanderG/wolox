@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 // State Context
 import { StateContext } from '../context/StateContext';
+import { colors } from '../themes/colors';
 // Components
 import SearchInput from './searchInput';
 import SearchInputClose from './searchInputClose';
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#fefefe',
+        color: colors.white,
     },
 });
 

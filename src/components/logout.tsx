@@ -7,6 +7,7 @@ import {
     Pressable,
     useWindowDimensions,
 } from 'react-native';
+import { colors } from '../themes/colors';
 // Storage - AsyncStorage
 import Storage from '../utils/AsyncStorage';
 
@@ -29,7 +30,7 @@ function Logout({ navigation }: { navigation: any }) {
 
 const styles = StyleSheet.create({
     btnLogout: {
-        backgroundColor: '#03a9f4',
+        backgroundColor: colors.primary,
         height: 60,
         borderRadius: 20,
         justifyContent: 'center',
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     btnLogoutText: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#fefefe',
+        color: colors.white,
     }
 });
 

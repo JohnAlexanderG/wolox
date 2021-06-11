@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 // interfaces
 import { Books } from '../interfaces/books';
+import { colors } from '../themes/colors';
 
 const ItemVertical = (props: any) => {
     const { author, title, image_url }: Books = props.data;
@@ -42,7 +43,7 @@ const ItemVertical = (props: any) => {
 
 const styles = StyleSheet.create({
     itemContainer: {
-        backgroundColor: '#fefefe',
+        backgroundColor: colors.white,
         marginBottom: 10,
         marginHorizontal: 16,
         paddingVertical: 10,

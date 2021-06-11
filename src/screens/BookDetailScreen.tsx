@@ -17,6 +17,7 @@ import { Books } from '../interfaces/books';
 // components
 import ItemHorizontal from '../components/itemHorizontal';
 import useGetDataBooks from '../hooks/useGetDataBooks';
+import { colors } from '../themes/colors';
 
 const BookDetailScreen = ({ navigation, route }: { navigation: any, route: any }) => {
     const { width } = useWindowDimensions();
@@ -89,13 +90,13 @@ const BookDetailScreen = ({ navigation, route }: { navigation: any, route: any }
                 </View>
                 <View style={{ marginTop: 16, }}>
                     <Pressable>
-                        <View style={{ borderWidth: 1, borderColor: '#03a9f4', paddingVertical: 16, alignItems: 'center', marginBottom: 8, borderRadius: 50 }}>
-                            <Text style={{ fontSize: 20, color: '#03a9f4', fontWeight: 'bold', }}>ADD TO WISHLIST</Text>
+                        <View style={{ borderWidth: 1, borderColor: colors.primary, paddingVertical: 16, alignItems: 'center', marginBottom: 8, borderRadius: 50 }}>
+                            <Text style={{ fontSize: 20, color: colors.primary, fontWeight: 'bold', }}>ADD TO WISHLIST</Text>
                         </View>
                     </Pressable>
                     <Pressable>
-                        <View style={{ borderWidth: 1, borderColor: '#03a9f4', backgroundColor: '#03a9f4', paddingVertical: 16, alignItems: 'center', borderRadius: 50 }} >
-                            <Text style={{ fontSize: 20, color: '#fefefe', fontWeight: 'bold', }}>RENT</Text>
+                        <View style={{ borderWidth: 1, borderColor: colors.primary, backgroundColor: colors.primary, paddingVertical: 16, alignItems: 'center', borderRadius: 50 }} >
+                            <Text style={{ fontSize: 20, color: colors.white, fontWeight: 'bold', }}>RENT</Text>
                         </View>
                     </Pressable>
                 </View>
@@ -137,7 +138,7 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#fefefe',
+        color: colors.white,
     },
 });
 
