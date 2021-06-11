@@ -23,3 +23,8 @@ React Native App.
 ```
 >> json-server --watch ./assets/db.json
 ```
+
+* opcional, configurar el emulator para correr en el mismo puerto.
+```
+>> adb -s emulator-5554 reverse tcp:3000 tcp:3000
+```
