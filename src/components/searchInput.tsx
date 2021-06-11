@@ -15,7 +15,6 @@ const SearchInput = () => {
         const books = allBooks.filter((query: Books) => {
             return query.title.toLowerCase().includes(text.toLowerCase()) || query.author.toLowerCase().includes(text.toLowerCase());
         })
-        console.log('books', books);
         setBooks(books);
     }
 
