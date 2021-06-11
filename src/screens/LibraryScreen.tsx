@@ -1,13 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 // react-native
-import {
-    SafeAreaView,
-    StatusBar,
-    FlatList,
-} from 'react-native';
+import { FlatList } from 'react-native';
 // Components
-import Header from '../components/header';
 import ItemVertical from '../components/itemVertical';
+import Layout from '../components/layout';
 import { StateContext } from '../context/StateContext';
 // interfaces
 import { Books } from '../interfaces/books';
@@ -29,9 +25,7 @@ const LibraryScreen = ({ navigation }: { navigation: any }) => {
     }, [showSearchInput]);
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: 'rgba(227,242,253, 1)' }}>
-            <StatusBar barStyle='default' />
-            <Header title='Library' />
+        <Layout title='Library' >
             <FlatList
                 data={books}
                 renderItem={({ item }: { item: Books }) => {
@@ -39,7 +33,7 @@ const LibraryScreen = ({ navigation }: { navigation: any }) => {
                 }}
                 keyExtractor={(item) => item.id.toString()}
             />
-        </SafeAreaView>
+        </Layout>
     );
 }
 

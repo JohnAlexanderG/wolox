@@ -1,21 +1,14 @@
-import React from 'react'
-// react-native
-import {
-    SafeAreaView,
-    StatusBar
-} from 'react-native'
+import React from 'react';
 // components
-import Header from '../components/header';
+import Layout from '../components/layout';
 import Logout from '../components/logout';
 
 const SettingsScreen = ({ navigation }: { navigation: any }) => {
     return (
-        <SafeAreaView style={{ flex: 1, justifyContent: 'space-between', backgroundColor: 'rgba(227,242,253, 1)' }}>
-            <StatusBar barStyle='default' />
-            <Header title='Settings' />
+        <Layout title='Settings' >
             <Logout navigation={navigation} />
-        </SafeAreaView>
+        </Layout>
     );
 }
 
-export default SettingsScreen
+export default SettingsScreen;
