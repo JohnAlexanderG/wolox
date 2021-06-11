@@ -11,6 +11,7 @@ import BookDetailScreen from './src/screens/BookDetailScreen';
 import LibraryStack from './src/stacks/LibraryStack';
 // Hooks
 import useLogin from './src/hooks/useLogin';
+import { StateProvider } from './src/context/StateContext';
 
 const Stack = createStackNavigator();
 
@@ -21,19 +22,29 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false
-        }}
-        initialRouteName='home'
-      >
-        <Stack.Screen name="home" component={ isLogIn ? LibraryStack : LoginScreen } options={{ headerShown: false }} />
-        <Stack.Screen name="login" component={ LoginScreen } options={{ headerShown: false }} />
-        <Stack.Screen name="library" component={ LibraryStack } options={{ headerShown: false }} />
-        <Stack.Screen name="book-detail" component={ BookDetailScreen } options={{ headerShown: false }} />
-      </Stack.Navigator>
+      <StateAppProvider>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false
+          }}
+          initialRouteName='home'
+        >
+          <Stack.Screen name="home" component={isLogIn ? LibraryStack : LoginScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="login" component={LoginScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="library" component={LibraryStack} options={{ headerShown: false }} />
+          <Stack.Screen name="book-detail" component={BookDetailScreen} options={{ headerShown: false }} />
+        </Stack.Navigator>
+      </StateAppProvider>
     </NavigationContainer>
   );
 };
+
+const StateAppProvider = ({ children }: any) => {
+  return (
+    <StateProvider>
+      {children}
+    </StateProvider>
+  );
+}
 
 export default App;
