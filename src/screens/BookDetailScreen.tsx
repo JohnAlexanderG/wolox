@@ -3,13 +3,8 @@ import React from 'react';
 import {
     View,
     Text,
-    StyleSheet,
     Image,
     Pressable,
-    SafeAreaView,
-    StatusBar,
-    ImageBackground,
-    useWindowDimensions,
     FlatList,
 } from 'react-native'
 // interfaces
@@ -18,30 +13,13 @@ import { Books } from '../interfaces/books';
 import ItemHorizontal from '../components/itemHorizontal';
 import useGetDataBooks from '../hooks/useGetDataBooks';
 import { colors } from '../themes/colors';
+import Layout from '../components/layout';
 
 const BookDetailScreen = ({ navigation, route }: { navigation: any, route: any }) => {
-    const { width } = useWindowDimensions();
     const { bookDataDetail, booksByGenre } = useGetDataBooks(route);
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: 'rgba(227,242,253, 1)' }}>
-            <StatusBar barStyle='default' />
-            <ImageBackground
-                source={require('wolox/assets/general/bc_nav_bar.png')}
-                resizeMode='cover'
-                style={{
-                    ...styles.imageBackground,
-                    width: width,
-                }}
-            >
-                <View style={{ ...styles.header, width: width, }}>
-                    <Pressable onPress={() => navigation.push('library')} >
-                        <Image style={styles.headerImg} source={require('wolox/assets/navigation-bar/ic_back.png')} />
-                    </Pressable>
-                    <Text style={styles.headerTitle} >Book Detail</Text>
-                    <Image style={{ ...styles.headerImg, opacity: 0 }} source={require('wolox/assets/navigation-bar/ic_search.png')} />
-                </View>
-            </ImageBackground>
+        <Layout title='Book Detail' isBookDetail={true} navigation={navigation} >
             <View
                 style={{
                     backgroundColor: '#fff',
@@ -114,32 +92,10 @@ const BookDetailScreen = ({ navigation, route }: { navigation: any, route: any }
                             keyExtractor={(item) => item.id.toString()}
                         />
                     </View>
-                ) : null}
-        </SafeAreaView>
+                ) : null
+            }
+        </Layout>
     );
 }
-
-const styles = StyleSheet.create({
-    imageBackground: {
-        height: 102,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 10
-    },
-    header: {
-        paddingHorizontal: 20,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-    headerImg: {
-        width: 25,
-        height: 25
-    },
-    headerTitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: colors.white,
-    },
-});
 
 export default BookDetailScreen;

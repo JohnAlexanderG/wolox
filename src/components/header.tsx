@@ -19,9 +19,11 @@ import SearchInputClose from './searchInputClose';
 // Header Interface
 interface HeaderProps {
     title: String;
+    isBookDetail: boolean | undefined;
+    navigation: any;
 }
 
-function Header({ title }: HeaderProps ) {
+function Header({ title, isBookDetail, navigation }: HeaderProps) {
     const { width } = useWindowDimensions();
     const { initialState: { showSearchInput }, setShowSearchInput } = useContext(StateContext);
     return (
@@ -33,16 +35,25 @@ function Header({ title }: HeaderProps ) {
                 width: width,
             }}
         >
-            {!showSearchInput
-                ? (
-                    <View style={{ ...styles.header, width: width, }}>
-                        <Image style={styles.headerImg} source={require('wolox/assets/navigation-bar/ic_notifications.png')} />
-                        <Text style={styles.headerTitle} >{title}</Text>
-                        <Pressable onPress={() => setShowSearchInput(!showSearchInput)}>
-                            <Image style={styles.headerImg} source={require('wolox/assets/navigation-bar/ic_search.png')} />
-                        </Pressable>
-                    </View>
-                )
+            {!showSearchInput ?
+                !isBookDetail ?
+                    (
+                        <View style={{ ...styles.header, width: width, }}>
+                            <Image style={styles.headerImg} source={require('wolox/assets/navigation-bar/ic_notifications.png')} />
+                            <Text style={styles.headerTitle} >{title}</Text>
+                            <Pressable onPress={() => setShowSearchInput(!showSearchInput)}>
+                                <Image style={styles.headerImg} source={require('wolox/assets/navigation-bar/ic_search.png')} />
+                            </Pressable>
+                        </View>
+                    ) : (
+                        <View style={{ ...styles.header, width: width, }}>
+                            <Pressable onPress={() => navigation.push('library')} >
+                                <Image style={styles.headerImg} source={require('wolox/assets/navigation-bar/ic_back.png')} />
+                            </Pressable>
+                            <Text style={styles.headerTitle} >{title}</Text>
+                            <Image style={{ ...styles.headerImg, opacity: 0 }} source={require('wolox/assets/navigation-bar/ic_search.png')} />
+                        </View>
+                    )
                 : (
                     <View>
                         <SearchInput />
