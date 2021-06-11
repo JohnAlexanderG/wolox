@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 // react-native
 import {
     SafeAreaView,
@@ -8,16 +8,17 @@ import {
 // Components
 import Header from '../components/header';
 import ItemVertical from '../components/itemVertical';
+import { StateContext } from '../context/StateContext';
 // interfaces
 import { Books } from '../interfaces/books';
 import Http from '../utils/http';
 
 const LibraryScreen = ({ navigation }: { navigation: any }) => {
-    
-    const [ showSearchInput, setShowSearchInput ] = useState(false);
 
-    const [books, setBooks] = useState([]);
-    const [allBooks, setAllBooks] = useState([]);
+    const { initialState, setBooks, setAllBooks } = useContext(StateContext);
+    const { books, allBooks } = initialState;
+
+    const [showSearchInput, setShowSearchInput] = useState(false);
 
     useEffect(() => {
         if (books.length < allBooks.length || allBooks.length == 0) {
@@ -34,8 +35,6 @@ const LibraryScreen = ({ navigation }: { navigation: any }) => {
             <StatusBar barStyle='default' />
             <Header
                 title='Library'
-                allBooks={allBooks}
-                setBooks={setBooks}
                 showSearchInput={showSearchInput}
                 setShowSearchInput={setShowSearchInput}
             />

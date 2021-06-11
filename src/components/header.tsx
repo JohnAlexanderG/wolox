@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // react-native
 import {
     View,
@@ -10,13 +10,23 @@ import {
     Pressable,
     TextInput,
 } from 'react-native';
+import { StateContext } from '../context/StateContext';
 
 import { Books } from '../interfaces/books';
 
-function Header({ title, allBooks, setBooks, showSearchInput, setShowSearchInput }: { title: String, allBooks: any, setBooks: any, showSearchInput: any, setShowSearchInput: any }) {
+interface HeaderProps {
+    title: String;
+    showSearchInput: any;
+    setShowSearchInput: any;
+}
 
+function Header({ title, showSearchInput, setShowSearchInput }: HeaderProps ) {
+    
     const { width } = useWindowDimensions();
-
+    
+    const { initialState, setBooks } = useContext(StateContext);
+    const { allBooks } = initialState;
+    
     const onHandleSearchInput = (text: string) => {
         const books = allBooks.filter((query: Books) => {
             return query.title.toLowerCase().includes(text.toLowerCase()) || query.author.toLowerCase().includes(text.toLowerCase());
@@ -87,7 +97,6 @@ function Header({ title, allBooks, setBooks, showSearchInput, setShowSearchInput
         </ImageBackground>
     );
 }
-
 
 const styles = StyleSheet.create({
     imageBackground: {
