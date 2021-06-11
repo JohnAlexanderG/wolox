@@ -6,8 +6,8 @@ import Header from './header';
 interface LayoutProps {
     children: any;
     title: String;
-    isBookDetail: boolean | undefined;
-    navigation: any;
+    isBookDetail?: boolean | undefined;
+    navigation?: any;
 }
 
 const Layout = ({ children, title, isBookDetail, navigation }: LayoutProps) => {
