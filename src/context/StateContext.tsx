@@ -5,12 +5,14 @@ import StateReducer from './StateReducer';
 export interface InitialState {
     books: never[];
     allBooks: never[];
+    showSearchInput: boolean;
 }
 
 // Estado Inicial
 export const initialState: InitialState = {
     books: [],
     allBooks: [],
+    showSearchInput: false,
 }
 
 // Interface que expondremos al contexto de React
@@ -18,6 +20,7 @@ export interface ContextProps {
     initialState: InitialState;
     setBooks: (data: never[]) => void;
     setAllBooks: (data: never[]) => void;
+    setShowSearchInput: (showSearchInput: boolean) => void;
 }
 
 // Creando el contexto
@@ -36,11 +39,16 @@ export const StateProvider = ({ children }: { children: any }) => {
         dispatch({ type: 'ALL_BOOKS', payload: data });
     }
 
+    const setShowSearchInput = (showSearchInput: boolean) => {
+        dispatch({ type: 'SEARCH_CLOSE', payload: showSearchInput })
+    }
+
     return (
         <StateContext.Provider value={{
             initialState: state,
             setBooks,
-            setAllBooks
+            setAllBooks,
+            setShowSearchInput
         }} >
             { children }
         </StateContext.Provider>

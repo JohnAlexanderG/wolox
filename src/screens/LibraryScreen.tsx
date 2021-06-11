@@ -16,9 +16,7 @@ import Http from '../utils/http';
 const LibraryScreen = ({ navigation }: { navigation: any }) => {
 
     const { initialState, setBooks, setAllBooks } = useContext(StateContext);
-    const { books, allBooks } = initialState;
-
-    const [showSearchInput, setShowSearchInput] = useState(false);
+    const { books, allBooks, showSearchInput } = initialState;
 
     useEffect(() => {
         if (books.length < allBooks.length || allBooks.length == 0) {
@@ -33,11 +31,7 @@ const LibraryScreen = ({ navigation }: { navigation: any }) => {
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: 'rgba(227,242,253, 1)' }}>
             <StatusBar barStyle='default' />
-            <Header
-                title='Library'
-                showSearchInput={showSearchInput}
-                setShowSearchInput={setShowSearchInput}
-            />
+            <Header title='Library' />
             <FlatList
                 data={books}
                 renderItem={({ item }: { item: Books }) => {

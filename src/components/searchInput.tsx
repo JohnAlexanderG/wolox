@@ -1,27 +1,27 @@
-import React from 'react';
-import { TextInput, useWindowDimensions } from 'react-native';
+import React, { useContext } from 'react';
+import { StyleSheet, TextInput, useWindowDimensions } from 'react-native';
+import { StateContext } from '../context/StateContext';
+import { Books } from '../interfaces/books';
 
-const searchInput = () => {
+const SearchInput = () => {
+    
     const { width } = useWindowDimensions();
 
-    // const onHandleSearchInput = (text: string) => {
-    //     const books = allBooks.filter((query: Books) => {
-    //         return query.title.toLowerCase().includes(text.toLowerCase()) || query.author.toLowerCase().includes(text.toLowerCase());
-    //     })
-    //     console.log('books', books);
-    //     setBooks(books);
-    // }
+    const { initialState, setBooks } = useContext(StateContext);
+    const { allBooks } = initialState;
+    
+    const onHandleSearchInput = (text: string) => {
+        const books = allBooks.filter((query: Books) => {
+            return query.title.toLowerCase().includes(text.toLowerCase()) || query.author.toLowerCase().includes(text.toLowerCase());
+        })
+        console.log('books', books);
+        setBooks(books);
+    }
 
     return (
         <TextInput
-            style={{
-                backgroundColor: 'rgba(227,242,253, 0.25)',
-                width: width * 0.9,
-                paddingLeft: 16,
-                borderRadius: 4,
-                color: '#fefefe'
-            }}
-            // onChangeText={(text: string) => { onHandleSearchInput(text) }}
+            style={{ ...styles.textInput, width: width * 0.9 }}
+            onChangeText={(text: string) => { onHandleSearchInput(text) }}
             selectionColor='#1976d2'
             placeholder='Search'
             placeholderTextColor='white'
@@ -29,4 +29,13 @@ const searchInput = () => {
     );
 }
 
-export default searchInput;
+const styles = StyleSheet.create({
+    textInput: {
+        backgroundColor: 'rgba(227,242,253, 0.25)',
+        paddingLeft: 16,
+        borderRadius: 4,
+        color: '#fefefe'
+    },
+});
+
+export default SearchInput;

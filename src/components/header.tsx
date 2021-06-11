@@ -8,33 +8,21 @@ import {
     ImageBackground,
     useWindowDimensions,
     Pressable,
-    TextInput,
 } from 'react-native';
+// State Context
 import { StateContext } from '../context/StateContext';
+// Components
+import SearchInput from './searchInput';
+import SearchInputClose from './searchInputClose';
 
-import { Books } from '../interfaces/books';
-
+// Header Interface
 interface HeaderProps {
     title: String;
-    showSearchInput: any;
-    setShowSearchInput: any;
 }
 
-function Header({ title, showSearchInput, setShowSearchInput }: HeaderProps ) {
-    
+function Header({ title }: HeaderProps ) {
     const { width } = useWindowDimensions();
-    
-    const { initialState, setBooks } = useContext(StateContext);
-    const { allBooks } = initialState;
-    
-    const onHandleSearchInput = (text: string) => {
-        const books = allBooks.filter((query: Books) => {
-            return query.title.toLowerCase().includes(text.toLowerCase()) || query.author.toLowerCase().includes(text.toLowerCase());
-        })
-        console.log('books', books);
-        setBooks(books);
-    }
-
+    const { initialState: { showSearchInput }, setShowSearchInput } = useContext(StateContext);
     return (
         <ImageBackground
             source={require('wolox/assets/general/bc_nav_bar.png')}
@@ -56,41 +44,8 @@ function Header({ title, showSearchInput, setShowSearchInput }: HeaderProps ) {
                 )
                 : (
                     <View>
-                        <TextInput
-                            style={{
-                                backgroundColor: 'rgba(227,242,253, 0.25)',
-                                width: width * 0.9,
-                                paddingLeft: 16,
-                                borderRadius: 4,
-                                color: '#fefefe'
-                            }}
-                            onChangeText={(text: string) => { onHandleSearchInput(text) }}
-                            selectionColor='#1976d2'
-                            placeholder='Search'
-                            placeholderTextColor='white'
-                        />
-                        <View style={{
-                            width: 50,
-                            height: 50,
-                            position: 'absolute',
-                            top: 0,
-                            right: 0,
-                            justifyContent: 'center',
-                            alignContent: 'center',
-                        }}>
-                            <Pressable
-                                onPress={() => {
-                                    setShowSearchInput(!showSearchInput)
-                                }}
-                            >
-                                <Text style={{
-                                    color: '#fefefe',
-                                    fontWeight: 'bold',
-                                    fontSize: 20,
-                                    textAlign: 'center',
-                                }}>X</Text>
-                            </Pressable>
-                        </View>
+                        <SearchInput />
+                        <SearchInputClose />
                     </View>
                 )
             }
