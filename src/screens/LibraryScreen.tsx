@@ -17,7 +17,7 @@ const LibraryScreen = ({ navigation }: { navigation: any }) => {
     useEffect(() => {
         if (books.length < allBooks.length || allBooks.length == 0) {
             (async () => {
-                const response = await Http.instance.get('http://127.0.0.1:3000/books')
+                const response = await Http.instance.get('http://10.0.2.2:3000/books')
                 setBooks(response);
                 setAllBooks(response);
             })();

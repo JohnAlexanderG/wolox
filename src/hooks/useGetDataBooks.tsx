@@ -9,7 +9,7 @@ function useGetDataBooks(route: any) {
 
     useEffect(() => {
         (async () => {
-            const response = await Http.instance.get('http://127.0.0.1:3000/books')
+            const response = await Http.instance.get('http://10.0.2.2:3000/books')
             const booksByGenre = response.filter((query: Books) => {
                 return query.genre.includes(route.params.genre)
             })
